@@ -89,3 +89,18 @@
       chdir: "{{ drupal_core_path }}"
     with_items: "{{ s3_collections }}"
     when: "'{{ item.filename }}' not in ingested.stdout and {{ item.cpd }}"
+
+  - name: Create embargo list.
+    command: drush iipeadd --low=130.39.0.0 --high=130.39.255.255 --list=lsu-wired
+    args:
+      chdir: "{{ drupal_core_path }}"
+
+  - name: Make a pids list.
+    command: drush islandora-utils-get-pids-for-collection --collection=lsu-hpl:collection --outfile=/tmp/lsu-hpl.pids
+    args:
+      chdir: "{{ drupal_core_path }}"
+
+  - name: Set embargo from pids list.
+    command: drush islandora-ip-embargo-set-embargo-from-pid-list --pidsfile=/tmp/lsu-hpl.pids --lists=lsu-wired
+    args:
+      chdir: "{{ drupal_core_path }}"
