@@ -101,6 +101,6 @@
       chdir: "{{ drupal_core_path }}"
 
   - name: Set embargo from pids list.
-    command: drush islandora-ip-embargo-set-embargo-from-pid-list --pidsfile=/tmp/lsu-hpl.pids --lists=lsu-wired
+    command: drush islandora-ip-embargo-set-embargo --pidsfile=/tmp/lsu-hpl.pids --lists=lsu-wired
     args:
       chdir: "{{ drupal_core_path }}"
