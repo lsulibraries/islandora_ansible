@@ -15,31 +15,15 @@
     with_items: "{{ s3_collections }}"
     register: collections
 
-  - name: Ensure pip is installed.
-    apt:
-      name: python-pip
-      cache_valid_time: 86400
-      state: installed
-
-  - name: Ensure boto is installed.
-    pip:
-      name: boto
-      state: present
-
-  - name: Get Collections.
-    s3:
-      bucket: lsulibraries-sample-collections
-      object: "{{ item.1.filename }}"
+  - name: Download collections
+    get_url:
+      url: "https://s3-us-west-2.amazonaws.com/lsulibraries-sample-collections/{{item.1.filename}}"
       dest: "/tmp/{{ item.1.filename }}"
-      mode: get
-#      overwrite: different
-      aws_access_key: AKIAIEFMJE6G4UWRJS2Q
-      aws_secret_key: GCOACeuveEp2haPhZtI6C9WEML8+ZLPxV8de14GS
     with_together:
       - "{{ collections.results }}"
       - "{{ s3_collections }}"
     when: not item.0.stat.exists
-
+    
   - name: Ensure that we have the latest isla utils.
     git:
       version: 3c935a9dd123653efb6ab0f3f5e9daad0bd35424
@@ -82,6 +66,12 @@
     command: drush en -y islandora_batch
     args:
       chdir: "{{ drupal_core_path }}"
+
+
+  - name: create fresh structure files
+    shell: "cd {{ drupal_core_path }}/sites/all/modules/islandora_compound_batch/extras/scripts && php create_structure_files.php /tmp/{{ item.dirname }}"
+    with_items: "{{ s3_collections }}"
+    when: "{{ item.cpd }}"
 
   - name: Ingest (cpd).
     shell: "drush islandora_compound_batch_preprocess -u 1 --src=/tmp/{{ item.dirname }} --parent={{ item.namespace }}:collection --namespace={{ item.namespace }}  && drush -u 1 ibi && echo '{{ item.filename }} ' >> /opt/ingested"
