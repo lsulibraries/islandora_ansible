@@ -43,3 +43,11 @@
         path: "{{ drupal_core_path }}/sites/{{ item }}.{{ fqdn_suffix }}"
         src: "{{ drupal_core_path }}/sites/{{ item }}"
       with_items: "{{ institutions }}"
+
+    - name: uninstall xhprof
+      command: pecl uninstall xhprof
+
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
