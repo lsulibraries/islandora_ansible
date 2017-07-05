@@ -3,25 +3,7 @@
 # GLOBAL
 work_dir: /opt/
 institutions:
-  - hnoc
-  - latech
   - ldl
-  - loyno
-  - lsm
-  - lsu
-  - lsuhsc
-  - lsuhscs
-  - lsus
-  - mcneese
-  - nicholls
-  - nsu
-  - state
-  - subr
-  - tahil
-  - tulane
-  - ull
-  - ulm
-  - uno
 
 environment_type: dev
 tomcat_xmx: "{{ (ansible_memtotal_mb*0.5)|int|abs }}m"
@@ -119,3 +101,6 @@ drupal_main_site_database: ldl
 drupal_main_site_name: LDL
 drupal_main_site_database_user: ldl
 drupal_main_site_database_password: ldl
+
+# for compatibility with php 5.5
+drush_version: "e658a9641f498b33c05bb9f66fedcd749e3eeb4f"
