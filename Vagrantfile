@@ -35,7 +35,9 @@ Vagrant.configure(2) do |config|
     vb.memory = "4000"
     vb.cpus = 2
   end
+
   # Use rbconfig to determine if we're on a windows host or not.
+
   require 'rbconfig'
   is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
   if is_windows
@@ -48,7 +50,7 @@ Vagrant.configure(2) do |config|
         attach_mounts: false,
         drupal_reverse_proxy: false,
         fqdn_suffix: 'library.local'
-                }
+      }
     end
   else
     config.vm.provision "ansible" do |ansible|
@@ -58,7 +60,8 @@ Vagrant.configure(2) do |config|
         mysql_local_installation: "true",
         attach_mounts: false,
         drupal_reverse_proxy: false,
-        fqdn_suffix: 'library.local'            }
+        fqdn_suffix: 'library.local'
+      }
     end
   end
 end
