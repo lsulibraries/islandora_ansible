@@ -1,6 +1,6 @@
 ---
 - include: migrations/migration-2017010911.yml
-- include: migrations/migration-2017011110.yml
+#- include: migrations/migration-2017011110.yml # Sets up permissions provided by book_access, which is currently blocked for security issues: https://www.drupal.org/project/book_access
 - include: migrations/migration-2017011208.yml
 - include: migrations/migration-2017011716.yml
 - include: migrations/migration-2017011812.yml
