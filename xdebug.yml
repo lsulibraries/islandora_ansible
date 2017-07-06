@@ -1,0 +1,43 @@
+# Installs and configures xdebug in 'dev' environments.
+---
+- hosts: all
+  become: yes
+  vars: 
+    xdebug_remote_host: 130.39.60.175 # note, this should be your ip address.
+  tasks: 
+  - name: Install xdebug
+    apt:
+      name: php5-xdebug
+    when: environment_type == 'dev'
+
+  - name: create xdebug.ini
+    file:
+      path: /etc/php5/mods-available/xdebug.ini
+      state: touch
+    when: environment_type == 'dev'
+
+  - name: Xdebug config
+    blockinfile:
+      dest: /etc/php5/mods-available/xdebug.ini
+      block: |
+        [xdebug]
+        zend_extension=xdebug.so
+        xdebug.default_enable=1
+        xdebug.remote_enable=1
+        xdebug.remote_handler=dbgp
+        xdebug.remote_host={{ xdebug_remote_host }}
+        xdebug.remote_port=9000
+    when: environment_type == 'dev'
+
+  - name: create xdebug.ini
+    file:
+      src: /etc/php5/mods-available/xdebug.ini
+      dest: /etc/php5/apache2/conf.d/25-xdebug.ini
+      state: link
+    when: environment_type == 'dev'
+
+  - name: Restart apache2
+    service:
+      name: apache2
+      state: restarted
+    when: environment_type == 'dev'
