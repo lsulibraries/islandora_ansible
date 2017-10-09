@@ -5,6 +5,8 @@ The top-level playbook for a clean build under Vagrant is `local.yml`. This, in 
 
 For a clean build, it is important to make sure that `local.yml` is set in the Vagrantfile: `ansible.playbook = "local.yml"` in the  `config.vm.provision "ansible" do |ansible|` section. For the build to be successful, every branch in the tree starting with `local.yml` needs to be uncommented; while working on the configuration, it will be common to comment out large portions of the full build, so if you are having problems, be sure to walk the tree to where the trouble is indicated by error messages.
 
+Copy the file /S/Departments/Digital\ Services/Internal/Infrastructure/cache.zip to your islandora_ansible/roles/ansible-role-islandora-build-prep/files/
+
 The build proceeds like this:
 
 - `local.yml` - main play that starts a full build.
