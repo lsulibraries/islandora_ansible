@@ -5,8 +5,6 @@ The top-level playbook for a clean build under Vagrant is `local.yml`. This, in 
 
 For a clean build, it is important to make sure that `local.yml` is set in the Vagrantfile: `ansible.playbook = "local.yml"` in the  `config.vm.provision "ansible" do |ansible|` section. For the build to be successful, every branch in the tree starting with `local.yml` needs to be uncommented; while working on the configuration, it will be common to comment out large portions of the full build, so if you are having problems, be sure to walk the tree to where the trouble is indicated by error messages.
 
-Copy the file /S/Departments/Digital\ Services/Internal/Infrastructure/cache.zip to your islandora_ansible/roles/ansible-role-islandora-build-prep/files/
-
 The build proceeds like this:
 
 - `local.yml` - main play that starts a full build.
@@ -25,3 +23,20 @@ The build proceeds like this:
    - `post-up.yml` - for local builds- any cleanup that needs to happen before ansible exits
 
 Those are just the tips of their respective icebergs, but it should be simple, if tedious, to read through the build at whatever level of detail you wish as this is just a set of linear steps, organized -ish so as to make maintainence and comprehension less difficult.
+
+
+To build a new dev box:
+
+-  Ansible version 2.2.1.0
+-  Vagrant version 1.9.1
+-  VirtualBox > 4  
+-  (and VirtualBox Guest Additions)
+-  (*other versions may work, but no promises*)
+
+-  `git clone --recursive https://github.com/lsulibraries/islandora_ansible`
+-  Copy the file `/S/Departments/Digital\ Services/Internal/Infrastructure/cache.zip` to your `islandora_ansible/roles/ansible-role-islandora-build-prep/files/`
+
+-  `cd islandora_ansible`
+-  `vagrant up`
+
+-  If provision fails after geerlingguy.apache, reprovisoning will fail unless the commenting out that line.  Either comment out build_prep.yml line, or `vagrant destroy` & `vagrant up`.
