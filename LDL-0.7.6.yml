@@ -18,7 +18,6 @@
 - include: migrations/migration-2017091211.yml
 - include: migrations/migration-2017091313.yml
 - include: migrations/migration-2017091618.yml
-- include: migrations/migration-2017092013.yml
 - include: migrations/migration-2017092210.yml
 - include: migrations/migration-2017092810.yml
 - include: migrations/migration-2017092813.yml

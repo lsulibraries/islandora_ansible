@@ -84,7 +84,7 @@
     when: "{{ item.cpd }}"
 
   - name: Ingest (cpd).
-    shell: "drush islandora_compound_batch_preprocess -u 1 --src=/tmp/{{ item.dirname }} --parent={{ item.namespace }}:collection --namespace={{ item.namespace }}  && drush -u 1 ibi && echo '{{ item.filename }} ' >> /opt/ingested"
+    shell: "drush islandora_compound_batch_preprocess -u 1 --scan_target=/tmp/{{ item.dirname }} --parent={{ item.namespace }}:collection --namespace={{ item.namespace }}  && drush -u 1 ibi && echo '{{ item.filename }} ' >> /opt/ingested"
     args:
       chdir: "{{ drupal_core_path }}"
     with_items: "{{ s3_collections }}"
