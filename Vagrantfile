@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
   is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
   if is_windows
     config.vm.provision "ansible_local" do |ansible|
-      ansible.playbook = "local.yml"
+      ansible.playbook = "build.yml"
       ansible.verbose = 'vv'
       ansible.install = true
       ansible.extra_vars = {
@@ -36,7 +36,7 @@ Vagrant.configure(2) do |config|
     end
   else
     config.vm.provision "ansible" do |ansible|
-      ansible.playbook = "local.yml"
+      ansible.playbook = "build.yml"
       ansible.verbose = 'vv'
       ansible.extra_vars = {
         mysql_local_installation: "true",
