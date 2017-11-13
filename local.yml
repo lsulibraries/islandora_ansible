@@ -2,6 +2,6 @@
 #- include: vagrant-hack.yml
 - include: pre-up.yml
 - include: build.yml
-- include: migrations.yml
-- include: collections.yml
-- include: post-up.yml
+# - include: migrations.yml
+# - include: collections.yml
+# - include: post-up.yml
