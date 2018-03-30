@@ -34,9 +34,6 @@
 [submodule "roles/ansible-tomcat7"]
 	path = roles/ansible-tomcat7
 	url = https://github.com/lsulibraries/ansible-tomcat7.git
-[submodule "roles/java8"]
-	path = roles/java8
-	url = https://github.com/gregwhitaker/ansible-java8.git
 [submodule "roles/ansible-role-islandora"]
 	path = roles/ansible-role-islandora
 	url = https://github.com/lsulibraries/ansible-role-islandora.git
@@ -58,3 +55,6 @@
 [submodule "migrations"]
 	path = migrations
 	url = https://github.com/lsulibraries/islandora_migrations.git
+[submodule "roles/ansible-role-java"]
+	path = roles/ansible-role-java
+	url = https://github.com/geerlingguy/ansible-role-java
