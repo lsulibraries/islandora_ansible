@@ -58,3 +58,21 @@
 [submodule "roles/ansible-role-java"]
 	path = roles/ansible-role-java
 	url = https://github.com/geerlingguy/ansible-role-java
+[submodule "roles/ansible-role-php"]
+	path = roles/ansible-role-php
+	url = https://github.com/geerlingguy/ansible-role-php
+[submodule "roles/ansible-role-composer"]
+	path = roles/ansible-role-composer
+	url = https://github.com/geerlingguy/ansible-role-composer
+[submodule "roles/ansible-role-apache"]
+	path = roles/ansible-role-apache
+	url = https://github.com/geerlingguy/ansible-role-apache
+[submodule "roles/ansible-role-git"]
+	path = roles/ansible-role-git
+	url = https://github.com/geerlingguy/ansible-role-git
+[submodule "roles/ansible-role-php-mysql"]
+	path = roles/ansible-role-php-mysql
+	url = https://github.com/geerlingguy/ansible-role-php-mysql
+[submodule "roles/ansible-role-drush"]
+	path = roles/ansible-role-drush
+	url = https://github.com/geerlingguy/ansible-role-drush

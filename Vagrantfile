@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
 
   config.vm.network "forwarded_port", guest: 80,   host: 8000 # apache
   config.vm.network "forwarded_port", guest: 8080, host: 8080 # tomcat
@@ -35,6 +35,10 @@ Vagrant.configure(2) do |config|
       }
     end
   else
+    config.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y python-simplejson
+    SHELL
     config.vm.provision "ansible" do |ansible|
       ansible.playbook = "build.yml"
       ansible.verbose = 'vv'
