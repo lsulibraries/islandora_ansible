@@ -73,21 +73,22 @@ php_display_errors: On
 php_date_timezone: America/Chicago
 php_memory_limit: 2048M
 php_packages:
-  - php5
-  - php5-mcrypt
-  - php5-cli
-  - php5-common
-  - php5-curl
-  - php5-dev
-  - php5-fpm
-  - php5-gd
+  - php
+  - php-mcrypt
+  - php-cli
+  - php-common
+  - php-curl
+  - php-dev
+  - php-fpm
+  - php-gd
   - php-pear
-  - php5-apcu
+  - php-apcu
+  - php-mbstring
   - libpcre3-dev
   - php-soap
-  - php5-xsl
-  - php5-json
-  - php5-mysql
+  - php-xsl
+  - php-json
+  - php-mysql
 
 #################
 # drupal
@@ -300,7 +301,7 @@ git_versions:
 - { dest: "/sites/all/modules/trello_tickets/", version: "71e82e174947529f2bf365c58b381f574ea09ba6", repo: "https://github.com/lsulibraries/trello_tickets" }
 - { dest: "/sites/all/themes/ldl/", version: "cbce2eff7934789002dbf0967a275b05f3cd7000", repo: "https://github.com/lsulibraries/ldl_theme" }
 
-seadragon_settings: >-      
+seadragon_settings: >-
       array(
       'maxZoomLevel' => 5,
       'tabIndex' => 0,
@@ -412,3 +413,27 @@ seadragon_settings: >-
       'collectionLayout' => 'horizontal',
       'collectionTileSize' => 800,
       'collectionTileMargin' => 80,)
+
+
+# Install Drush Launcher.
+drush_launcher_install: no
+drush_launcher_version: "0.5.1"
+drush_launcher_phar_url: https://github.com/drush-ops/drush-launcher/releases/download/{{ drush_launcher_version }}/drush.phar
+drush_launcher_path: /usr/local/bin/drush
+
+# Install Drush via Composer globally.
+drush_composer_global_install: yes
+drush_composer_version: "~8.0"
+drush_composer_update: no
+drush_composer_path: /usr/local/bin/drush
+
+# Install from source (git clone + composer-based install).
+drush_install_from_source: yes
+drush_source_install_bin_path: /usr/local/bin/drush
+drush_source_install_path: /usr/local/share/drush
+drush_source_install_version: "8.x"
+drush_keep_updated: no
+drush_force_update: no
+drush_force_composer_install: no
+drush_composer_cli_options: "--prefer-dist --no-interaction"
+drush_clone_depth: 1
