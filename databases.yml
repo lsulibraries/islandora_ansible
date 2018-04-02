@@ -33,3 +33,13 @@
         name: fedoraAdmin
         password: fedoraAdmin
         priv: fedora3.*:ALL
+
+    - name: Ensure drupal user exists.
+      mysql_user:
+        login_host: "{{ mysql_login_host }}"
+        login_user: "{{ mysql_login_user }}"
+        login_password: "{{ mysql_drupal_password }}"
+        state: present
+        name: ldl
+        password: ldl
+        priv: ldl.*:ALL

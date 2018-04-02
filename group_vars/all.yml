@@ -3,7 +3,7 @@
 # GLOBAL
 work_dir: /opt/
 institutions:
-  - ldl
+  - default
 
 environment_type: dev
 tomcat_xmx: "{{ (ansible_memtotal_mb*0.5)|int|abs }}m"
@@ -17,7 +17,7 @@ fits_version: 0.8.5
 # software sha256
 fedora_sha256: f0fcde6cfd2ff8080a88f8c472fdf107df9a56ce2cbbd78d2e3c4db7480a4bdf
 
-# software locations 
+# software locations
 fedora_home: /usr/local/fedora
 fedora_volume_mount_point: /opt/mounts/fedora
 fedora_home_link_target: "{{ fedora_volume_mount_point }}/fcrepo"
@@ -63,7 +63,8 @@ mysql_local_installation: false
 mysql_login_host: localhost
 mysql_login_user: "{{ mysql_root_username }}"
 mysql_login_password: "{{ mysql_root_password }}"
-
+mysql_drupal_user: ldl
+mysql_drupal_password: ldl
 
 ##########################
 # PHP
@@ -428,7 +429,7 @@ drush_composer_update: no
 drush_composer_path: /usr/local/bin/drush
 
 # Install from source (git clone + composer-based install).
-drush_install_from_source: yes
+drush_install_from_source: no
 drush_source_install_bin_path: /usr/local/bin/drush
 drush_source_install_path: /usr/local/share/drush
 drush_source_install_version: "8.x"
